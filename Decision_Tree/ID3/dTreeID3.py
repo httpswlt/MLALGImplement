@@ -27,7 +27,7 @@ def count_nums(classify):
 
 
 def calculate_entropy(datasets):
-    # calculate the entropy of dataSet
+    # calculate the entropy of datasets by classify result.
     data_num = len(datasets)
     label_count = {}
     for data in datasets:
@@ -37,7 +37,7 @@ def calculate_entropy(datasets):
         label_count[label] += 1
     entropy = 0.0
     for key in label_count.keys():
-        p_i = float(label_count[key] / data_num)
+        p_i = float(label_count[key]) / data_num
         entropy -= p_i * math.log(p_i, 2)
     return entropy
 
