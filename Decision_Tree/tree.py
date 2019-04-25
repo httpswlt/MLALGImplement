@@ -47,3 +47,6 @@ class Tree(object):
 
     def build_tree(self, train_data=None, train_feature=None):
         pass
+
+    def pred(self, test_data, tree):
+        pass
