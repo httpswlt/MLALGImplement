@@ -2,11 +2,14 @@
 import os
 import sys
 sys.path.append('../../MLALGImplement')
-print(sys.path)
 import pandas as pd
 import random
 import math
-from Decision_Tree.ID3.dTreeID3 import decision_tree_ID3
+import numpy as np
+from Decision_Tree.ID3_tree import ID3
+
+
+
 
 def load_data():
     df = pd.read_csv('./data/housing.txt')
@@ -28,7 +31,9 @@ def main():
     tree_nums = 10
     for i in range(tree_nums):
         sample_data, sample_feature = random_datasets(datasets)
-        pass
+        id3 = ID3(sample_data, sample_feature)
+        tree = id3.build_tree()
+        print tree
 
 
 
