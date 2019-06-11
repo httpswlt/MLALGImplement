@@ -1,5 +1,5 @@
 # coding:utf-8
-from .tree import Tree
+from tree import Tree
 
 
 class ID3(Tree):

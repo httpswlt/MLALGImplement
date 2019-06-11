@@ -20,7 +20,7 @@ def pca(x, k):
     feature_value, feature_vector = np.linalg.eig(cov_x)
     index = np.argsort(-feature_value)
     if k > col:
-        print "k must lower than feature number."
+        print("k must lower than feature number.")
         return
     select_vec = np.matrix(feature_vector.T[index[:k]])
     final_data = normal_x * select_vec.T
