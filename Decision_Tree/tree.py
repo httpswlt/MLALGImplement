@@ -34,6 +34,13 @@ class Tree(object):
 
     @staticmethod
     def split_datasets(datas, feature_value, feature_idx):
+        """
+            remove feature_value dim.
+        :param datas:
+        :param feature_value:
+        :param feature_idx:
+        :return:
+        """
         new_datasets = []
         for data in datas:
             if data[feature_idx] == feature_value:
@@ -41,6 +48,21 @@ class Tree(object):
                 temp.extend(data[feature_idx+1:])   # right data
                 new_datasets.append(temp)
         return new_datasets
+
+    @staticmethod
+    def calculate_gini_dichotomy(datasets, new_data):
+        pass
+
+    @staticmethod
+    def split_datasets_double(datas, feature_value, feature_idx):
+        d1 = []
+        d2 = []
+        for data in datas:
+            if data[feature_idx] == feature_value:
+                d1.append(data)
+            else:
+                d2.append(data)
+        return [d1, d2]
 
     def select_best_tree_point(self, train_data=None, train_feature=None):
         pass
