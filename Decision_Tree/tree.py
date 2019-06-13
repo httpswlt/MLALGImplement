@@ -49,9 +49,8 @@ class Tree(object):
                 new_datasets.append(temp)
         return new_datasets
 
-    @staticmethod
-    def calculate_gini_dichotomy(datasets, new_data):
-        pass
+
+
 
     @staticmethod
     def split_datasets_double(datas, feature_value, feature_idx):
