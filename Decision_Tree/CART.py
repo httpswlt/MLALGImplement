@@ -1,5 +1,5 @@
 from tree import Tree
-
+import random
 
 class CART(Tree):
     def __init__(self, datasets, feature):
@@ -10,15 +10,23 @@ class CART(Tree):
 
     def build_tree(self, train_data=None, train_feature=None):
 
+        best_goal_gini = 9999
+        best_goal_feature = None
         for i, feature_name in enumerate(self.feature):
-            self.calculate_ginibyfeature_name(feature_name)
+            ginis = self.calculate_ginibyfeature_name(feature_name)
+            if ginis[1] <= best_goal_gini:
+                best_goal_gini = ginis[1]
+                best_goal_feature = (feature_name, ginis[0], ginis[1])
+        tree = {best_goal_feature[0]: {}}
+        
 
-            # self.calculate_gini_dichotomy(self.datasets, new_data)
 
     def calculate_ginibyfeature_name(self, feature_name):
         i = self.feature.index(feature_name)
         feature_values = set([data[i] for data in self.datasets])
-
+        best_gini = 9999
+        best_feature_values = []
+        best_ginis = []
         for feature_value in feature_values:
             new_data = self.split_datasets_double(self.datasets, feature_value, i)
             d1 = new_data[0]
@@ -28,7 +36,12 @@ class CART(Tree):
             gini1 = self.calculate_gini_dichotomy(d1)
             gini2 = self.calculate_gini_dichotomy(d2)
             gini_value = prop_1 * gini1 + prop_2 * gini2
-            print(gini_value)
+            if gini_value <= best_gini:
+                best_gini = gini_value
+                best_feature_values.append(feature_value)
+                best_ginis.append(best_gini)
+        best_feature = random.sample(best_feature_values, 1)[0]
+        return best_feature, best_ginis[best_feature_values.index(best_feature)]
 
     def calculate_gini_dichotomy(self, datasets):
         d_normal = len(datasets)
@@ -44,6 +57,7 @@ class CART(Tree):
         p = float(label_count.get(self.dichotomy_1, 0)) / d_normal
         gini = 2 * p * (1 - p)
         return gini
+
 
 def load_data():
     datasets = [['long', 'coarse', 'male'],
