@@ -1,6 +1,7 @@
 from tree import Tree
 import random
 
+
 class CART(Tree):
     def __init__(self, datasets, feature):
         super(CART, self).__init__(datasets, feature)
@@ -18,8 +19,6 @@ class CART(Tree):
                 best_goal_gini = ginis[1]
                 best_goal_feature = (feature_name, ginis[0], ginis[1])
         tree = {best_goal_feature[0]: {}}
-        
-
 
     def calculate_ginibyfeature_name(self, feature_name):
         i = self.feature.index(feature_name)

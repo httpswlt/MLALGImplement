@@ -68,10 +68,10 @@ def main():
     p0_vec, p1_vec, p_1 = train(train_vec, label)
     test_entry = ['love', 'my', 'dalmation']
     test_vect = word2vect(all_words_vec, test_entry)
-    print pred(test_vect, p0_vec, p1_vec, p_1)
+    print(pred(test_vect, p0_vec, p1_vec, p_1))
     test_entry = ['stupid', 'garbage']
     test_vect = word2vect(all_words_vec, test_entry)
-    print pred(test_vect, p0_vec, p1_vec, p_1)
+    print(pred(test_vect, p0_vec, p1_vec, p_1))
 
 
 if __name__ == '__main__':
